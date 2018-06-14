@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogs',
     'categories',
-    'posts'
+    'posts',
+    'UI'
 ]
 
 MIDDLEWARE = [
@@ -145,6 +146,7 @@ LOGGING = {
         },
     }
 }
+
 
 
 

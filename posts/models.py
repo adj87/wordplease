@@ -14,3 +14,8 @@ class Post(models.Model):
     modified = models.DateField(auto_now=True)
     img_url = models.CharField(max_length=120)
     categories = models.ManyToManyField(Categorie)
+
+    #return a string representation of any object
+
+    def __str__(self):
+        return self.post_title
