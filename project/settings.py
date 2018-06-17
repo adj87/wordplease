@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'blogs',
     'categories',
     'posts',
-    'UI'
+    'UI',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -147,6 +148,11 @@ LOGGING = {
     }
 }
 
+# REST Framework settings
+REST_FRAMEWORK = {
+   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+   'PAGE_SIZE': 5
+}
 
-
-
+#Others configuration
+LOGIN_URL = 'login'

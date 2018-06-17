@@ -18,7 +18,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
+from blogs.api import UsersApi, UserDetailAPI, BlogsApi
 from blogs.views import blogs, LoginView, LogoutView, signupview
+from posts.api import PostListAPI, PostDetailAPI, UserPostListAPI
 from posts.views import posts, user_posts, NewPostView, PostDetail
 
 urlpatterns = [
@@ -30,6 +32,13 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', signupview, name='signup'),
-    path('new-post/', NewPostView.as_view(), name='new-post')
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('new-post/', NewPostView.as_view(), name='new-post'),
 
+    #API URLS
+    path('api/v1/users/', UsersApi.as_view(), name='apiv1-users'),
+    path('api/v1/users/<int:pk>/', UserDetailAPI.as_view(), name='apiv1-user-detail'),
+    path('api/v1/blogs/', BlogsApi.as_view(), name='apiv1-blogs'),
+    path('api/v1/posts/', PostListAPI.as_view(), name='apiv1-posts'),
+    path('api/v1/posts/<int:pk>/', PostDetailAPI.as_view(), name='apiv1-post-detail'),
+    path('api/v1/posts/mine/', UserPostListAPI.as_view(), name='apiv1-user-mine'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
