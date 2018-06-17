@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="row">
+
+        {% for post in posts %}
+                <div class="card col-sm-6 col-lg-4 col-xl-3">
+
+                    <a href="{% url 'post_detail' post.owner post.pk %}">
+                        <img class="card-img-top" src="/media/{{ post.image }}" alt="Card image cap" style="max-height: 200px;  background-position: center; ">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.post_title }}</h5>
+                        <p class="card-text">{{ post.post_content}}</p>
+                        <p class="card-text">
+                            <a href="{% url 'user_posts_list' post.owner.username %}">{{ post.owner.username }}</a>
+                        </p>
+                        {% for category in post.categories.all %}
+                            <span class="badge badge-primary">{{ category.categorie_name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

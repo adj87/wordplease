@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="row">
+        <div class="card">
+                <img class="card-img-top" src="/media/{{ post.image }}" alt="Card image cap" >
+
+            <div class="card-body">
+                <h5 class="card-title">{{ post.post_title }}</h5>
+                <p class="card-text">{{ post.post_content}}</p>
+                <p class="card-text">
+
+
+            </div>
+        </div>
+</div>
+{% endblock %}

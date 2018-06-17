@@ -18,13 +18,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from blogs.views import blogs
-from posts.views import posts, post_detail, user_posts
+from blogs.views import blogs, LoginView, LogoutView, signupview
+from posts.views import posts, user_posts, NewPostView, PostDetail
 
 urlpatterns = [
-    path('', posts),
+    path('', posts, name='home'),
     path('admin/', admin.site.urls),
-    path('blogs/', blogs),
-    path('blogs/<str:nombre_de_usuario>/', user_posts),
-    path('blogs/<str:nombre_de_usuario>/<int:post_id>/', post_detail)
+    path('blogs/', blogs, name='blogs'),
+    path('blogs/<str:nombre_de_usuario>/', user_posts, name='user_posts_list'),
+    path('blogs/<str:nombre_de_usuario>/<int:post_id>/', PostDetail.as_view(), name='post_detail'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('signup/', signupview, name='signup'),
+    path('new-post/', NewPostView.as_view(), name='new-post')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
